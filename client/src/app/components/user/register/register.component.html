@@ -1,0 +1,52 @@
+
+      <div class="title text-center">
+        <h1 class="principal">REGISTRO</h1>
+      </div>
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputName">NOMBRE</label>
+            <input [(ngModel)]="user.name" name = "name" type = "name"  class = "form-control" id = "inputName" placeholder="Ejemplo: Pablo">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">APELLIDO</label>
+            <input [(ngModel)]="user.lastname" name = "lastname" type="name" class="form-control"  id="inputPassword4" placeholder="Ejemplo: Barillas">
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail5">CONTRASEÑA</label>
+              <input type="password" [(ngModel)]="user.password"  name = "password" class="form-control" id="inputEmail5" placeholder="Ingrese su contraseña">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword5">CONFIRMAR CONTRASEÑA</label>
+              <input type="password" class="form-control" id="inputPassword5" placeholder="Vuelva a ingresar su contraseña">
+            </div>
+          </div>
+        
+        <div class="form-group">
+          <label for="inputAddress">CORREO</label>
+          <input type="email" [(ngModel)]="user.mail" name = "mail" class="form-control" id="inputAddress" placeholder="ejemplo@gmail.com">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputBirthdate">FECHA DE NACIMIENTO</label>
+            <input type="date" [(ngModel)]="user.birthdate"  name = "birthdate" class="form-control" id="inputBirthdate" placeholder="Ingrese su fecha de nacimiento">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputCountry">PAIS DE ORIGEN</label>
+            <input type="text" [(ngModel)]="user.country"  name="country" class="form-control" id="inputCountry" placeholder="Ingrese su pais de origen">
+          </div>
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="inputAddress">FOTO DE PERFIL</label>
+          <input type="file" [(ngModel)]="user.image" name = "image" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
+          <img [src]="photoSelected || 'assets/img/no-image.png'" class="card-img-top" alt="No image" (click)="photoInput.click()" >
+        </div>
+
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-primary" (click)="registerUser()" >Registrar</button>
+        </div>
+      </form>
