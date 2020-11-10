@@ -8,6 +8,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
 const productRoute_1 = __importDefault(require("./routes/productRoute"));
+const adminRoute_1 = __importDefault(require("./routes/adminRoute"));
 const path_1 = __importDefault(require("path"));
 const database = require('./database/database');
 class Server {
@@ -27,6 +28,7 @@ class Server {
     routes() {
         this.app.use('/user', userRoute_1.default);
         this.app.use('/product', productRoute_1.default);
+        this.app.use('/admin', adminRoute_1.default);
     }
     start() {
         database.initialize();

@@ -7,6 +7,9 @@ import { RegisterComponent } from './components/user/register/register.component
 import {DetailComponent} from './components/products/detail/detail.component';
 import {AddproductComponent} from './components/products/addproduct/addproduct.component';
 import {ProfileComponent} from './components/user/profile/profile.component';
+import {ReportComponent} from './components/admin/report/report.component';
+import {DenunceComponent} from './components/admin/denunce/denunce.component';
+import {CategoryComponent} from './components/admin/category/category.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -15,6 +18,9 @@ const routes: Routes = [
   {path: 'products/start', component: StartComponent},
   {path: 'products/detail/:id', component: DetailComponent},
   {path: 'products/addproduct', component: AddproductComponent},
+  {path: 'admin/report', component: ReportComponent},
+  {path: 'admin/category', component: CategoryComponent},
+  {path: 'admin/denunce', component: DenunceComponent},
   {path: 'user/profile', component: ProfileComponent}
 ];
 

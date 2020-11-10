@@ -1,10 +1,11 @@
 export interface Product {
+    fk_idCategory: number;
+    fk_mail: string;
     image?: File;
     name: string;
     product_detail: string;
     key_words: string;
     price: number;
-    category: string;
     likes: number;
     deslikes: number;
     state: number

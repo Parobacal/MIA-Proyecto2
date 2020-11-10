@@ -1,0 +1,79 @@
+<label>Top 10 de productos que más “me gusta” han tenido</label>
+<hr>
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Vendedor</th>
+        <th scope="col">Total <i class="fas fa-thumbs-up"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-dark" *ngFor="let l of likes">
+        <th scope="row">{{l.PRODUCTO}}</th>
+        <td>{{l.NOMBRE}} {{l.APELLIDO}}</td>
+        <td>{{l.TOTAL}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <label>Top 10 de productos que más “no  me gusta” han tenido</label>
+<hr>
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Vendedor</th>
+        <th scope="col">Total <i class="fas fa-thumbs-down"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-dark" *ngFor="let d of deslikes">
+        <th scope="row">{{d.PRODUCTO}}</th>
+        <td>{{d.NOMBRE}} {{d.APELLIDO}}</td>
+        <td>{{d.TOTAL}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <label>Top 10 de clientes que mas publicaciones han hecho</label>
+  <hr>
+  <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">NOMBRE</th>
+          <th scope="col">CORREO</th>
+          <th scope="col">CREDITO</th>
+          <th scope="col">CANTIDAD DE PUBLICACIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-dark" *ngFor="let p of publications">
+          <th scope="row">{{p.NOMBRE}}</th>
+          <td>{{p.CORREO}}</td>
+          <td>{{p.CREDITO}}</td>
+          <td>{{p.TOTAL}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <label>Clientes con mayor y menor cantidad de creditos</label>
+    <hr>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">CORREO</th>
+            <th scope="col">FECHA DE NACIMIENTO</th>
+            <th scope="col">CREDITO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-dark" *ngFor="let c of credits">
+            <th scope="row">{{c.NOMBRE}}</th> 
+            <td>{{c.CORREO}}</td>
+            <td>{{c.FECHA_NACIMIENTO}}</td>
+            <td>{{c.CREDITO}}</td>
+          </tr>
+        </tbody>
+      </table>

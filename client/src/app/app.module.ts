@@ -15,6 +15,9 @@ import {ProductsService} from './services/products.service';
 import { DetailComponent } from './components/products/detail/detail.component';
 import { AddproductComponent } from './components/products/addproduct/addproduct.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { ReportComponent } from './components/admin/report/report.component';
+import { DenunceComponent } from './components/admin/denunce/denunce.component';
+import { CategoryComponent } from './components/admin/category/category.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { ProfileComponent } from './components/user/profile/profile.component';
     StartComponent,
     DetailComponent,
     AddproductComponent,
-    ProfileComponent
+    ProfileComponent,
+    ReportComponent,
+    DenunceComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

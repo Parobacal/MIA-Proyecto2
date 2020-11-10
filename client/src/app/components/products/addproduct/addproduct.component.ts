@@ -2,6 +2,8 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Router } from '@angular/router';
 import {ProductsService} from '../../../services/products.service';
+import {AuthService} from '../../../services/auth.service';
+
 
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget;
@@ -16,11 +18,12 @@ export class AddproductComponent implements OnInit {
 
 
   product: Product = {
+    fk_idCategory: 1,
+    fk_mail: '',
     name: '',
     product_detail: '',
     key_words: '',
     price: 0,
-    category: 'Deportes',
     likes: 0,
     deslikes: 0,
     state: 1,
@@ -29,12 +32,13 @@ export class AddproductComponent implements OnInit {
   file: File;
   photoSelected: string | ArrayBuffer;
 
-  constructor(private productsService: ProductsService, private router: Router) { }
+  constructor(private productsService: ProductsService, private userService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   addProduct(){
+    this.product.fk_mail = this.userService.getUser();
     console.log(this.product);
     this.productsService.saveProduct(this.product, this.file)
     .subscribe(

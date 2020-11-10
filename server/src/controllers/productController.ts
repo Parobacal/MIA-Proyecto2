@@ -4,11 +4,10 @@ const database = require('../database/database');
 class ProductController { 
 
     public async odbAddProduct(req: Request, res:Response){  
-        const { nombre, detalle_producto, palabras_clave, precio, categoria, me_gusta, no_me_gusta, estado} = req.body;
-        console.log(req.file);
+        const { fk_idCategoria, fk_correo, nombre, detalle_producto, palabras_clave, precio, me_gusta, no_me_gusta, estado} = req.body;
         const imagen  = req.file.path;
-        let query = `INSERT INTO producto (imagen,nombre,detalle_producto,palabras_clave,precio,categoria,me_gusta,no_me_gusta,estado) 
-                     VALUES ('${imagen}','${nombre}','${detalle_producto}','${palabras_clave}','${precio}','${categoria}','${me_gusta}','${no_me_gusta}','1')`;           
+        let query = `INSERT INTO producto (fk_idCategoria,fk_correo,imagen,nombre,detalle_producto,palabras_clave,precio,me_gusta,no_me_gusta,estado) 
+                     VALUES ('${fk_idCategoria}','${fk_correo}','${imagen}','${nombre}','${detalle_producto}','${palabras_clave}','${precio}','${me_gusta}','${no_me_gusta}','1')`;           
         await database.simpleExecute(query);   
         res.json({text: 'Product created'});
         console.log("Product created");

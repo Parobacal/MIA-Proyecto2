@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import userRoute from './routes/userRoute';
 import productRoute from './routes/productRoute';
+import adminRoute from './routes/adminRoute';
 import path from 'path';
 
 const database = require('./database/database');
@@ -29,6 +30,7 @@ class Server {
     routes():void{
         this.app.use('/user', userRoute);
         this.app.use('/product', productRoute);
+        this.app.use('/admin', adminRoute);
     }
 
     start(): void{

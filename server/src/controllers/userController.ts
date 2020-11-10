@@ -51,10 +51,10 @@ class UserController {
     }
     
     public async login(req: Request, res: Response) {
-        //console.log(req.body.mail);
+        //console.log(req.body.correo);
         let query = `SELECT * FROM usuario WHERE correo = '${req.body.correo}'`;
         const result = await database.simpleExecute(query);
-        //console.log(result.rows[0].ESTADO);
+        //console.log(result.rows[0].NOMBRE);
         if(result.rows.length > 0){
             if(result.rows[0].ESTADO == 1){
                 const newaccessToken = jwt.sign({id: result.rows[0].CORREO},SECRET_KEY);

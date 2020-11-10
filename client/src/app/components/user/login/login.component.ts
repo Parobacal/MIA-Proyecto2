@@ -23,14 +23,15 @@ export class LoginComponent implements OnInit {
     .subscribe(
       res => {
         this.response = res;
-        if(this.response.nombre != 'admin'){
+        if(this.response.user != 'admin'){
           this.router.navigate(['/user/profile']);
           this.location.replaceState("/user/profile");
           //location.reload();
         }else{
-          this.router.navigate(['/admin/editHome']);
-          //this.location.replaceState("/admin/editHome");
-          location.reload();
+          //console.log("llegue");
+          this.router.navigate(['/admin/report']);
+          this.location.replaceState("/admin/report");
+          //location.reload();
         }
       },
       err => {

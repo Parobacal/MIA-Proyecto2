@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../models/product';
 
@@ -20,12 +20,14 @@ export class ProductsService {
   }
 
   saveProduct(product: Product, image: File){
+    console.log(product);
     const fd = new FormData();
+    fd.append('fk_idCategoria', product.fk_idCategory.toString());
+    fd.append('fk_correo', product.fk_mail);
     fd.append('nombre', product.name);
     fd.append('detalle_producto', product.product_detail);
     fd.append('palabras_clave', product.key_words);
     fd.append('precio', product.price.toString());
-    fd.append('categoria', product.category);
     fd.append('me_gusta', product.likes.toString());
     fd.append('no_me_gusta', product.deslikes.toString());
     fd.append('image',image);//
