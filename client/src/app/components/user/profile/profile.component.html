@@ -1,0 +1,121 @@
+<div class="container pt-5">
+    <div class="row flex-lg-nowrap pt-5">
+      <div class="col">
+        <div class="row">
+          <div class="col mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="e-profile">
+                  <div class="row">
+                    <div class="col-6 col-sm-auto mb-3">
+                      <div class="mx-auto" style="width: 140px;">
+                        <img [src]="'http://localhost:3000/'+userData.IMAGEN"  width="140" alt="">
+                      </div>
+                    </div>
+                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                      <div class="text-center text-sm-left mb-2 mb-sm-0">
+                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{userData.NOMBRE}} {{userData.APELLIDO}}</h4>                        <!--  
+                        <div class="mt-2">
+                            <button class="btn btn-dark" type="button">
+                              <i class="fa fa-fw fa-camera"></i>
+                              <span>Change Photo</span>
+                            </button>
+                        </div>
+                        -->
+                      </div>
+                        <div class="text-center text-sm-right">
+                          <span class="badge badge-secondary">{{userData.CORREO}}</span>
+                          <div class="text-muted"><small>CREDITOS: {{userData.CREDITO}}</small></div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="tab-content pt-3">
+                    <div class="tab-pane active">
+                      <form class="form" name="registerForm">
+                        <div class="row">
+                          <div class="col">
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>NOMBRE</label>
+                                  <input class="form-control" type="text" name="NOMBRE" value={{userData.NOMBRE}} [(ngModel)]="newData.NOMBRE">
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>APELLIDO</label>
+                                  <input class="form-control" type="text" name="APELLIDO" value={{userData.APELLIDO}} [(ngModel)]="newData.APELLIDO">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                      <label>PAIS</label>
+                                      <input class="form-control" rows="5" value={{userData.PAIS}} name="PAIS" [(ngModel)]="newData.PAIS">
+                                    </div>
+                                </div>
+                            </div>
+      
+                            <div class="row">
+                              <div class="col">
+                                  <div class="form-group">
+                                    <label>FECHA DE NACIMIENTO</label>
+                                    <input type="text" class="form-control" rows="5" value={{userData.FECHA_NACIMIENTO}} name="FECHA_NACIMIENTO" [(ngModel)]="newData.FECHA_NACIMIENTO">
+                                  </div>
+                            </div>
+                          </div>
+                         </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 col-sm-6 mb-3">
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>CLAVE ACTUAL</label>
+                                  <div class="row" ng-controller="prueba" ng-app="demoApp">
+                                    <div class="col">
+                                        <input class="form-control" type="CLAVE" value={{userData.CLAVE}} id="myCLAVE" 
+                                        name="currentPass" 
+                                        [(ngModel)]="newData.CLAVE"
+                                        > 
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>New Password</label>
+                                  <input class="form-control" type="password" placeholder="••••••" id="newPass" name="newPass" [(ngModel)]="newData.new">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                  <input class="form-control" type="password" id="confirmPass" placeholder="••••••"></div>
+                              </div>
+                            </div>
+                          -->
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col d-flex justify-content-end">
+                            <button class="btn btn-dark" (click)="saveChanges()">GUARDAR CAMBIOS</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

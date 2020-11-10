@@ -18,15 +18,15 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(){
+    //console.log(this.user);
     this.auth.login(this.user)
     .subscribe(
       res => {
         this.response = res;
-        console.log(this.response);
         if(this.response.nombre != 'admin'){
-          this.router.navigate(['/user/register']);
-          this.location.replaceState("/user/register");
-          location.reload();
+          this.router.navigate(['/user/profile']);
+          this.location.replaceState("/user/profile");
+          //location.reload();
         }else{
           this.router.navigate(['/admin/editHome']);
           //this.location.replaceState("/admin/editHome");

@@ -14,6 +14,7 @@ import {AuthService} from './services/auth.service';
 import {ProductsService} from './services/products.service';
 import { DetailComponent } from './components/products/detail/detail.component';
 import { AddproductComponent } from './components/products/addproduct/addproduct.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddproductComponent } from './components/products/addproduct/addproduct
     HomeComponent,
     StartComponent,
     DetailComponent,
-    AddproductComponent
+    AddproductComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

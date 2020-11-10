@@ -14,6 +14,8 @@ class UserRoute {
     config() {
         this.router.post('/register', multer_1.default.single('image'), userController_1.userController.registerUser);
         this.router.post('/login', userController_1.userController.login);
+        this.router.put('/update', userController_1.userController.update);
+        this.router.get('/getUser/:username', userController_1.userController.getUser);
     }
 }
 const userRoute = new UserRoute();

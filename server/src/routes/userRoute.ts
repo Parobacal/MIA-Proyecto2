@@ -13,6 +13,8 @@ class UserRoute{
     config():void{
         this.router.post('/register',multer.single('image'), userController.registerUser);
         this.router.post('/login', userController.login);
+        this.router.put('/update',userController.update);
+        this.router.get('/getUser/:username',userController.getUser);
     }
 }
 
