@@ -4,12 +4,16 @@ import { HomeComponent } from './components/home/home.component';
 import { StartComponent } from './components/products/start/start.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
+import {DetailComponent} from './components/products/detail/detail.component';
+import {AddproductComponent} from './components/products/addproduct/addproduct.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'user/login', component: LoginComponent},
   {path: 'user/register', component: RegisterComponent},
-  {path: 'product/start', component: StartComponent}
+  {path: 'products/start', component: StartComponent},
+  {path: 'products/detail/:id', component: DetailComponent},
+  {path: 'products/addproduct', component: AddproductComponent}
 ];
 
 @NgModule({

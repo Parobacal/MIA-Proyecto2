@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="col-md-4 offset-md-4">
+
+<form>
+  <div class="title text-center">
+    <h1 class="principal">INGRESAR</h1>
+  </div>
+  <div class="form-group text-center">
+    <input type="email" class="form-control" id="inputEmail" [(ngModel)]="user.correo" name="correo" aria-describedby="emailHelp" placeholder="Ingrese su correo">
+    <small id="emailHelp" class="form-text text-muted">Asegúrate de ingresar el correo registrado en tu cuenta.</small>
+  </div>
+  <div class="form-group text-center">
+    <input type="password" class="form-control" id="inputPassword" [(ngModel)]="user.password" name="password" placeholder="Ingrese su contraseña">
+  </div>
+  <div class="form-group text-center">
+    <a routerLink="/user/register" >¿Aún no tienes una cuenta?, regístrate.</a>
+  </div>
+  <div class="form-group text-center">
+    <button type="submit" class="btn btn-primary" (click)="login()">INGRESAR</button>
+  </div>
+</form>
+</div>

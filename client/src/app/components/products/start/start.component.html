@@ -1,1 +1,51 @@
-<p>start works!</p>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          CATEGORIA
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          PRECIO
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">De menor a mayor</a>
+          <a class="dropdown-item" href="#">De mayor a menor</a>
+        </div>
+      </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">BUSCAR</button>
+    </form>
+  </div>
+</nav>
+<div class="row">
+  <div class="col-md-4" *ngFor="let product of products">
+    <div class="card text-center">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        {{product.NOMBRE}}
+        <button class="btn btn-danger">
+          <i class="fas fa-shopping-cart"></i>
+        </button>
+      </div>
+      <img [src]="'http://localhost:3000/'+product.IMAGEN"class="card-img-top">
+      <div class="card-body">
+        <p>Q.{{product.PRECIO}}</p>
+        <a [routerLink]="['/products/detail', product.IDPRODUCTO]" class="btn btn-info btn-block">
+          VER MÁS
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

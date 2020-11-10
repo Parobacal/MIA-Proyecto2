@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import {ProductsService} from '../../../services/products.service';
 
 @Component({
   selector: 'app-start',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartComponent implements OnInit {
 
-  constructor() { }
+  products: any = [];
+
+  constructor(private productsServices: ProductsService) { }
 
   ngOnInit(): void {
+
+    this.productsServices.getProducts().subscribe(
+      res => {
+        this.products = res;
+      },
+      err => console.log(err)
+    );
   }
 
 }

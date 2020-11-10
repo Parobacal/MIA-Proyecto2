@@ -1,0 +1,36 @@
+<div class="col-md-6 offset-md-3">
+    <div class="title text-center">
+        <h1 class="principal">NUEVO PRODUCTO</h1>
+      </div>
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="product.name" name="name" id="name" placeholder="NOMBRE" class="form-control" autofocus>
+                </div>
+                <div class="form-group">
+                    <textarea name="product_detail" [(ngModel)]="product.product_detail" id="detalle_producto" placeholder="DETALLES DEL PRODUCTO" rows="2" class="form-control" autofocus></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="product.key_words" name="key_words" id="palabras_clave" placeholder="PALABRAS CLAVE" class="form-control" autofocus>
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="product.price" name="price" id="precio" placeholder="PRECIO" class="form-control" autofocus>
+                </div>
+                <div class="form-group">
+                        <select id="inputCategory" class="form-control">
+                            <option selected>CATEGORIA</option>
+                            <option>...</option>
+                        </select>
+                </div>
+                <div class="form-group">
+                    <input type="file" [(ngModel)]="product.image" name = "image" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
+                    <img [src]="photoSelected || 'assets/img/no-image.png'" class="card-img-top" alt="No image" (click)="photoInput.click()" >    
+                </div>
+                <button class="btn btn-primary btn-block" (click)="addProduct()">
+                    AGREGAR
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

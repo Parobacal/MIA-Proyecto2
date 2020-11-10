@@ -1,46 +1,46 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
+import { Product } from 'src/app/models/product';
 import { Router } from '@angular/router';
-import {AuthService} from '../../../services/auth.service';
-
+import {ProductsService} from '../../../services/products.service';
 
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget;
 }
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-addproduct',
+  templateUrl: './addproduct.component.html',
+  styleUrls: ['./addproduct.component.css']
 })
-export class RegisterComponent implements OnInit {
-  
-  user: User = {
+export class AddproductComponent implements OnInit {
+
+
+  product: Product = {
     name: '',
-    lastname: '',
-    password: '',
-    mail: '',
-    birthdate: '',
-    country: '',
-    credit: 10000,
-    state: 0
+    product_detail: '',
+    key_words: '',
+    price: 0,
+    category: 'Deportes',
+    likes: 0,
+    deslikes: 0,
+    state: 1,
   };
 
   file: File;
   photoSelected: string | ArrayBuffer;
 
-  constructor(private userService: AuthService, private router:Router) { }
+  constructor(private productsService: ProductsService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  registerUser(){
-    console.log(this.user);
-    this.userService.createUser(this.user,this.file)
+  addProduct(){
+    console.log(this.product);
+    this.productsService.saveProduct(this.product, this.file)
     .subscribe(
       res => {
         console.log(res);
-        this.router.navigate(['/user/login']);
+        this.router.navigate(['/products/start']);
       },
       err => console.error(err)
     )
@@ -54,5 +54,5 @@ export class RegisterComponent implements OnInit {
       reader.readAsDataURL(this.file);
     }
   }
-  
+
 }

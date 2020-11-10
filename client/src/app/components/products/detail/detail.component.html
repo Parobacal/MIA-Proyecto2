@@ -1,0 +1,19 @@
+<div class="card mb-3">
+    <img class="card-img-top" [src]="'http://localhost:3000/'+product.IMAGEN" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{product.NOMBRE}}</h5>
+      <p class="card-text">{{product.DETALLE_PRODUCTO}}</p>
+      <p class="card-text"><small class="text-muted">{{product.PALABRAS_CLAVE}}</small></p>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-info" (click)="addLike()">
+            <i class="fas fa-thumbs-up"> {{product.ME_GUSTA}}</i>
+          </button>
+        <button class="btn btn-danger" (click)="addDeslike()">
+            <i class="fas fa-thumbs-down"> {{product.NO_ME_GUSTA}}</i>
+        </button>
+        <button class="btn btn-warning">
+            <i class="fas fa-shopping-cart"></i>
+        </button>
+    </div>
+  </div>

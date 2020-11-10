@@ -7,6 +7,8 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
+const productRoute_1 = __importDefault(require("./routes/productRoute"));
+const path_1 = __importDefault(require("path"));
 const database = require('./database/database');
 class Server {
     constructor() {
@@ -20,9 +22,11 @@ class Server {
         this.app.use(cors_1.default());
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
+        this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads')));
     }
     routes() {
         this.app.use('/user', userRoute_1.default);
+        this.app.use('/product', productRoute_1.default);
     }
     start() {
         database.initialize();

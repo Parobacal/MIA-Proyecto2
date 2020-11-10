@@ -2,6 +2,9 @@ import express, {Application} from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import userRoute from './routes/userRoute';
+import productRoute from './routes/productRoute';
+import path from 'path';
+
 const database = require('./database/database');
 
 class Server {
@@ -20,10 +23,12 @@ class Server {
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
+        this.app.use('/uploads',express.static(path.resolve('uploads')))
     }
 
     routes():void{
         this.app.use('/user', userRoute);
+        this.app.use('/product', productRoute);
     }
 
     start(): void{

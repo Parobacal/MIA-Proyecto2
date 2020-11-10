@@ -11,6 +11,9 @@ import { RegisterComponent } from './components/user/register/register.component
 import { HomeComponent } from './components/home/home.component';
 import { StartComponent } from './components/products/start/start.component';
 import {AuthService} from './services/auth.service';
+import {ProductsService} from './services/products.service';
+import { DetailComponent } from './components/products/detail/detail.component';
+import { AddproductComponent } from './components/products/addproduct/addproduct.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import {AuthService} from './services/auth.service';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    StartComponent
+    StartComponent,
+    DetailComponent,
+    AddproductComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,8 @@ import {AuthService} from './services/auth.service';
     FormsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    ProductsService
   ],
   bootstrap: [AppComponent]
 })

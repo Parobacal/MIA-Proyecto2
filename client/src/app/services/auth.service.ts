@@ -25,4 +25,8 @@ export class AuthService {
     return this.http.post(`${this.API_URL}/register`,fd);
   }
 
+  login(user: Object){
+    return this.http.post(`${this.API_URL}/login`,user)
+  }
+
 }
