@@ -77,3 +77,22 @@
           </tr>
         </tbody>
       </table>
+
+      <label>Top 10 de productos mas vendidos</label>
+    <hr>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">PRODUCTO</th>
+            <th scope="col">CLIENTE</th>
+            <th scope="col">VENTAS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-dark" *ngFor="let t of tops">
+            <th scope="row">{{t.PRODUCTO}}</th> 
+            <td>{{t.CLIENTE}}</td>
+            <td>{{t.VENTAS}}</td>
+          </tr>
+        </tbody>
+      </table>

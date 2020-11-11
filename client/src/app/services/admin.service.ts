@@ -26,4 +26,8 @@ export class AdminService {
     return this.http.get(`${this.API_URL}/report4`);
   }
 
+  getReport5(){
+    return this.http.get(`${this.API_URL}/report5`);
+  }
+
 }

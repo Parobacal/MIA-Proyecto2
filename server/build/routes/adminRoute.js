@@ -12,6 +12,7 @@ class AdminRoute {
         this.router.get('/report2', adminController_1.adminController.odbReport2);
         this.router.get('/report3', adminController_1.adminController.odbReport3);
         this.router.get('/report4', adminController_1.adminController.odbReport4);
+        this.router.get('/report5', adminController_1.adminController.odbReport5);
     }
 }
 const adminRoute = new AdminRoute();

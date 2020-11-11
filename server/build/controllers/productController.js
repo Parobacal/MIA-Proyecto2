@@ -64,14 +64,16 @@ class ProductController {
     odbBuyCart(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            let query1 = `SELECT fk_correo, vendedor, precio FROM carrito WHERE fk_correo = '${id}'`;
+            let query1 = `SELECT fk_idProducto, fk_correo, vendedor, precio FROM carrito WHERE fk_correo = '${id}'`;
             const result1 = yield database.simpleExecute(query1);
             if (result1.rows.length > 0) {
                 for (let i = 0; i < result1.rows.length; i++) {
                     let query2 = `UPDATE usuario SET credito = credito + '${result1.rows[i].PRECIO}' WHERE correo = '${result1.rows[i].VENDEDOR}'`;
                     let query3 = `UPDATE usuario SET credito = credito - '${result1.rows[i].PRECIO}' WHERE correo = '${id}'`;
+                    let query4 = `UPDATE producto SET estado = estado + 1 WHERE idProducto = '${result1.rows[i].FK_IDPRODUCTO}'`;
                     yield database.simpleExecute(query2);
                     yield database.simpleExecute(query3);
+                    yield database.simpleExecute(query4);
                 }
             }
             res.json({ text: "Compra realizada" });

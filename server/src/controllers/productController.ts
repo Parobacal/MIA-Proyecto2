@@ -50,7 +50,7 @@ class ProductController {
 
     public async odbBuyCart(req: Request, res: Response){
         const{id} = req.params;
-        let query1 = `SELECT fk_correo, vendedor, precio FROM carrito WHERE fk_correo = '${id}'`;
+        let query1 = `SELECT fk_idProducto, fk_correo, vendedor, precio FROM carrito WHERE fk_correo = '${id}'`;
         const result1 = await database.simpleExecute(query1);
         if(result1.rows.length > 0)
         {
@@ -58,8 +58,11 @@ class ProductController {
             {
                 let query2 = `UPDATE usuario SET credito = credito + '${result1.rows[i].PRECIO}' WHERE correo = '${result1.rows[i].VENDEDOR}'`;
                 let query3 = `UPDATE usuario SET credito = credito - '${result1.rows[i].PRECIO}' WHERE correo = '${id}'`;
+                let query4 = `UPDATE producto SET estado = estado + 1 WHERE idProducto = '${result1.rows[i].FK_IDPRODUCTO}'`;
+
                 await database.simpleExecute(query2);
                 await database.simpleExecute(query3);
+                await database.simpleExecute(query4);
             }
         }
         res.json({text: "Compra realizada"});

@@ -13,6 +13,8 @@ export class ReportComponent implements OnInit {
   deslikes: any = [];
   publications: any = [];
   credits: any = [];
+  tops: any = [];
+
 
   constructor(private adminService: AdminService) { }
 
@@ -41,6 +43,13 @@ export class ReportComponent implements OnInit {
     this.adminService.getReport4().subscribe(
       res => {
         this.credits = res;
+      },
+      err => console.log(err)
+    );
+
+    this.adminService.getReport5().subscribe(
+      res => {
+        this.tops = res;
       },
       err => console.log(err)
     );

@@ -44,5 +44,13 @@ class AdminController {
             console.log("Report4 sent");
         });
     }
+    odbReport5(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let query = `SELECT p.nombre AS PRODUCTO, u.nombre AS CLIENTE, p.estado AS VENTAS FROM usuario u, producto p WHERE p.fk_correo = u.correo ORDER BY VENTAS DESC FETCH NEXT 10 ROWS ONLY`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
+            console.log("Report5 sent");
+        });
+    }
 }
 exports.adminController = new AdminController();
