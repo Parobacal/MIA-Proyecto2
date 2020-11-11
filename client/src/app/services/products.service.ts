@@ -57,5 +57,9 @@ export class ProductsService {
     return this.http.put(`${this.API_URL}/add-deslike`, product);
   }
 
+  clearCart(id: string){
+    return this.http.delete(`${this.API_URL}/cart-clear/${id}`);
+  }
+
 }
 

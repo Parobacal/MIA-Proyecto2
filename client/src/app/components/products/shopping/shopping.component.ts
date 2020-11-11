@@ -25,5 +25,19 @@ export class ShoppingComponent implements OnInit {
     )
   }
 
+  buy(){
+    
+  }
+
+  clear(){
+    this.productService.clearCart(this.userService.getUser())
+    .subscribe(
+      res => {
+        console.log(res);
+        location.reload();
+      },
+      err => console.error(err)
+    )
+  }
 
 }

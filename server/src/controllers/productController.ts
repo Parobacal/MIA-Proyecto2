@@ -40,6 +40,14 @@ class ProductController {
         console.log("Cart sent");
     }
 
+    public async odbClearCart(req: Request, res: Response){
+        const{id} = req.params;
+        let query = `DELETE carrito WHERE fk_correo = '${id}'`;
+        const result = await database.simpleExecute(query);
+        res.send(result.rows);
+        console.log("Cart CLEAR");
+    }
+
     public async odbAddLike(req: Request, res: Response){
         let likes: number = req.body.ME_GUSTA + 1;
         let query = `UPDATE producto SET me_gusta = ${likes} WHERE idProducto = ${req.body.IDPRODUCTO}`;

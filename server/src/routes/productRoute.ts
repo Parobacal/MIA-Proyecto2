@@ -18,6 +18,7 @@ class ProductRoute{ //
         this.router.post('/add-product',multer.single('image'), productController.odbAddProduct);
         this.router.post('/add-cart', multer.single('image'), productController.odbAddCart);
         this.router.get('/cart/:id', productController.odbGetCart);
+        this.router.delete('/cart-clear/:id', productController.odbClearCart);
     }
 }
 

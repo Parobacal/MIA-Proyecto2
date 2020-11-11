@@ -52,6 +52,15 @@ class ProductController {
             console.log("Cart sent");
         });
     }
+    odbClearCart(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            let query = `DELETE carrito WHERE fk_correo = '${id}'`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
+            console.log("Cart CLEAR");
+        });
+    }
     odbAddLike(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let likes = req.body.ME_GUSTA + 1;
