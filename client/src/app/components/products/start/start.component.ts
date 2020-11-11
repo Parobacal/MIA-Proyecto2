@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Cart } from 'src/app/models/cart';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,6 +14,7 @@ export class StartComponent implements OnInit {
   products: any = [];
 
   cart: Cart = {
+    seller: '',
     fk_idProduct: 0,
     fk_mail: '',
     name: '',
@@ -32,7 +34,8 @@ export class StartComponent implements OnInit {
     );
   }
 
-  addToCart(idProduct: number, price: number, name: string){
+  addToCart(idProduct: number, price: number, name: string, seller: string){
+    this.cart.seller = seller;
     this.cart.fk_mail = this.userService.getUser();
     this.cart.fk_idProduct = idProduct;
     this.cart.price = price;

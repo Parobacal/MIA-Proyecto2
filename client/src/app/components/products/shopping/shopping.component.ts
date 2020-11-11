@@ -26,7 +26,15 @@ export class ShoppingComponent implements OnInit {
   }
 
   buy(){
-    
+    this.productService.buy(this.userService.getUser())
+    .subscribe(
+      res => {
+        console.log(res);
+        this.clear();
+        location.reload();
+      },
+      err => console.error(err)
+    )
   }
 
   clear(){

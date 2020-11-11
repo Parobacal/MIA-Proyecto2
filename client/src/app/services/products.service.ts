@@ -41,6 +41,7 @@ export class ProductsService {
 
   addCart(cart: Cart){
     const fd = new FormData();
+    fd.append('seller', cart.seller);
     fd.append('fk_idProducto', cart.fk_idProduct.toString());
     fd.append('fk_correo', cart.fk_mail);
     fd.append('cantidad', cart.quantity.toString());
@@ -59,6 +60,10 @@ export class ProductsService {
 
   clearCart(id: string){
     return this.http.delete(`${this.API_URL}/cart-clear/${id}`);
+  }
+
+  buy(id: string){
+    return this.http.get(`${this.API_URL}/cart-buy/${id}`);
   }
 
 }
