@@ -16,7 +16,8 @@ class ProductRoute{ //
         this.router.put('/add-like', productController.odbAddLike);
         this.router.put('/add-deslike', productController.odbAddDeslike);
         this.router.post('/add-product',multer.single('image'), productController.odbAddProduct);
-        //console.log("SI ENTRE");
+        this.router.post('/add-cart', multer.single('image'), productController.odbAddCart);
+        this.router.get('/cart/:id', productController.odbGetCart);
     }
 }
 

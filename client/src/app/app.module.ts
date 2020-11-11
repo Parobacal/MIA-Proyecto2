@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { ReportComponent } from './components/admin/report/report.component';
 import { DenunceComponent } from './components/admin/denunce/denunce.component';
 import { CategoryComponent } from './components/admin/category/category.component';
+import { ShoppingComponent } from './components/products/shopping/shopping.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CategoryComponent } from './components/admin/category/category.componen
     ProfileComponent,
     ReportComponent,
     DenunceComponent,
-    CategoryComponent
+    CategoryComponent,
+    ShoppingComponent
   ],
   imports: [
     BrowserModule,

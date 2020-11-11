@@ -5,6 +5,7 @@ class ProductController {
 
     public async odbAddProduct(req: Request, res:Response){  
         const { fk_idCategoria, fk_correo, nombre, detalle_producto, palabras_clave, precio, me_gusta, no_me_gusta, estado} = req.body;
+        console.log(fk_idCategoria);
         const imagen  = req.file.path;
         let query = `INSERT INTO producto (fk_idCategoria,fk_correo,imagen,nombre,detalle_producto,palabras_clave,precio,me_gusta,no_me_gusta,estado) 
                      VALUES ('${fk_idCategoria}','${fk_correo}','${imagen}','${nombre}','${detalle_producto}','${palabras_clave}','${precio}','${me_gusta}','${no_me_gusta}','1')`;           
@@ -30,6 +31,15 @@ class ProductController {
         console.log("Product detail sent");
     }
 
+    public async odbGetCart(req: Request, res: Response){
+        const{id} = req.params;
+        let query = `SELECT * FROM carrito WHERE fk_correo = '${id}'`;
+        const result = await database.simpleExecute(query);
+        
+        res.send(result.rows);
+        console.log("Cart sent");
+    }
+
     public async odbAddLike(req: Request, res: Response){
         let likes: number = req.body.ME_GUSTA + 1;
         let query = `UPDATE producto SET me_gusta = ${likes} WHERE idProducto = ${req.body.IDPRODUCTO}`;
@@ -42,6 +52,15 @@ class ProductController {
         let query = `UPDATE producto SET no_me_gusta = ${deslikes} WHERE idProducto = ${req.body.IDPRODUCTO}`;
         await database.simpleExecute(query);
         res.json({text: "DesLikes updated"});
+    }
+
+    public async odbAddCart(req: Request, res: Response){
+        const {fk_idProducto, fk_correo, nombre, cantidad, precio} = req.body;
+        let query = `INSERT INTO carrito (fk_idProducto,fk_correo,nombre,cantidad,precio) 
+                     VALUES ('${fk_idProducto}','${fk_correo}','${nombre}',1,'${precio}')`;           
+        await database.simpleExecute(query);   
+        res.json({text: 'Product created'});
+        console.log("Product created");
     }
 }
 

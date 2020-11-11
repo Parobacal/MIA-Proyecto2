@@ -15,6 +15,7 @@ class ProductController {
     odbAddProduct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { fk_idCategoria, fk_correo, nombre, detalle_producto, palabras_clave, precio, me_gusta, no_me_gusta, estado } = req.body;
+            console.log(fk_idCategoria);
             const imagen = req.file.path;
             let query = `INSERT INTO producto (fk_idCategoria,fk_correo,imagen,nombre,detalle_producto,palabras_clave,precio,me_gusta,no_me_gusta,estado) 
                      VALUES ('${fk_idCategoria}','${fk_correo}','${imagen}','${nombre}','${detalle_producto}','${palabras_clave}','${precio}','${me_gusta}','${no_me_gusta}','1')`;
@@ -42,6 +43,15 @@ class ProductController {
             console.log("Product detail sent");
         });
     }
+    odbGetCart(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            let query = `SELECT * FROM carrito WHERE fk_correo = '${id}'`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
+            console.log("Cart sent");
+        });
+    }
     odbAddLike(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let likes = req.body.ME_GUSTA + 1;
@@ -56,6 +66,16 @@ class ProductController {
             let query = `UPDATE producto SET no_me_gusta = ${deslikes} WHERE idProducto = ${req.body.IDPRODUCTO}`;
             yield database.simpleExecute(query);
             res.json({ text: "DesLikes updated" });
+        });
+    }
+    odbAddCart(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { fk_idProducto, fk_correo, nombre, cantidad, precio } = req.body;
+            let query = `INSERT INTO carrito (fk_idProducto,fk_correo,nombre,cantidad,precio) 
+                     VALUES ('${fk_idProducto}','${fk_correo}','${nombre}',1,'${precio}')`;
+            yield database.simpleExecute(query);
+            res.json({ text: 'Product created' });
+            console.log("Product created");
         });
     }
 }

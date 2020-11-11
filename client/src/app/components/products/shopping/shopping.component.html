@@ -1,0 +1,26 @@
+<label>CARRITO DE COMPRAS</label>
+    <hr>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">CANTIDAD </th>
+            <th scope="col">PRECIO UNITARIO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-dark" *ngFor="let c of carts">
+            <th scope="row">{{c.NOMBRE}}</th> 
+            <td>{{c.CANTIDAD}}</td>
+            <td>{{c.PRECIO}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <button class="btn btn-dark">
+          <i class="fas fa-check">COMPRAR</i>
+        </button>
+        <button class="btn btn-danger">
+          <i class="fas fa-trash">LIMPIAR</i>
+        </button>
+      </div>
