@@ -52,5 +52,22 @@ class AdminController {
             console.log("Report5 sent");
         });
     }
+    odbReport6(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let query = `SELECT p.nombre, p.correo, p.fecha_nacimiento, COUNT(*) AS TOTAL FROM usuario p, denuncia d WHERE p.correo = d.fk_correo GROUP BY p.nombre, p.correo, p.fecha_nacimiento ORDER BY TOTAL DESC FETCH NEXT 10 ROWS ONLY`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
+            console.log("Report6 sent");
+        });
+    }
+    odbAddCategory(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nombre } = req.body;
+            let query = `INSERT INTO categoria (nombre) VALUES ('${nombre}')`;
+            yield database.simpleExecute(query);
+            res.json({ text: "Category " + nombre + " created" });
+            console.log("Category " + nombre + " created");
+        });
+    }
 }
 exports.adminController = new AdminController();

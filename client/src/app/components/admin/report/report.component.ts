@@ -14,6 +14,7 @@ export class ReportComponent implements OnInit {
   publications: any = [];
   credits: any = [];
   tops: any = [];
+  denunces: any = [];
 
 
   constructor(private adminService: AdminService) { }
@@ -50,6 +51,13 @@ export class ReportComponent implements OnInit {
     this.adminService.getReport5().subscribe(
       res => {
         this.tops = res;
+      },
+      err => console.log(err)
+    );
+
+    this.adminService.getReport6().subscribe(
+      res => {
+        this.denunces = res;
       },
       err => console.log(err)
     );

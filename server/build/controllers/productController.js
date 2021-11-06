@@ -24,12 +24,84 @@ class ProductController {
             console.log("Product created");
         });
     }
+    odbAddComment(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { fk_idProducto, fk_correo, descripcion, fecha } = req.body;
+            let query = `INSERT INTO comentario (fk_idProducto,fk_correo,descripcion,fecha)
+                     VALUES ('${fk_idProducto}','${fk_correo}','${descripcion}',to_date('${fecha}','YYYY-MM-DD'))`;
+            yield database.simpleExecute(query);
+            res.json({ text: 'Comment created' });
+            console.log("Comment created");
+        });
+    }
+    odbGetComments(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            let query = `SELECT * FROM comentario WHERE fk_idProducto = ${id}`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
+            console.log("Comments sent");
+        });
+    }
+    odbAddDenunce(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { fk_idProducto, fk_correo, descripcion } = req.body;
+            let query = `INSERT INTO denuncia (fk_idProducto,fk_correo,descripcion)
+                     VALUES ('${fk_idProducto}','${fk_correo}','${descripcion}')`;
+            yield database.simpleExecute(query);
+            res.json({ text: 'Comment created' });
+            console.log("Comment created");
+        });
+    }
+    odbGetDenunce(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let query = `SELECT * FROM denuncia`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
+            console.log("Denunces sent");
+        });
+    }
     odbProductList(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let query = `SELECT * FROM producto`;
             const result = yield database.simpleExecute(query);
             res.send(result.rows);
             //res.json({text: "Product list sent"})
+            console.log("Product list sent");
+        });
+    }
+    odbMore(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let query = `SELECT * FROM producto ORDER BY precio DESC`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
+            //res.json({text: "Product list sent"})
+            console.log("Product list sent");
+        });
+    }
+    odbLess(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let query = `SELECT * FROM producto ORDER BY precio ASC`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
+            //res.json({text: "Product list sent"})
+            console.log("Product list sent");
+        });
+    }
+    odbOrderByCategory(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            let query = `SELECT * FROM producto WHERE fk_idCategoria = ${id}`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
+            console.log("Product detail sent");
+        });
+    }
+    odbCategoryList(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let query = `SELECT * FROM categoria`;
+            const result = yield database.simpleExecute(query);
+            res.send(result.rows);
             console.log("Product list sent");
         });
     }
@@ -59,6 +131,30 @@ class ProductController {
             const result = yield database.simpleExecute(query);
             res.send(result.rows);
             console.log("Cart CLEAR");
+        });
+    }
+    odbDeleteProduct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            let query1 = `DELETE comentario WHERE fk_idProducto = '${id}'`;
+            let query2 = `DELETE denuncia WHERE fk_idProducto = '${id}'`;
+            let query4 = `DELETE carrito WHERE fk_idProducto = '${id}'`;
+            let query3 = `DELETE producto WHERE idProducto = '${id}'`;
+            yield database.simpleExecute(query2);
+            yield database.simpleExecute(query1);
+            yield database.simpleExecute(query4);
+            yield database.simpleExecute(query3);
+            res.json({ text: "PRODUCT CLEAR" });
+            console.log("PRODUCT CLEAR");
+        });
+    }
+    odbDeleteDenunce(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            let query = `DELETE denuncia WHERE fk_idProducto = '${id}'`;
+            yield database.simpleExecute(query);
+            res.json({ text: "DENUNCE CLEAR" });
+            console.log("DENUNCE CLEAR");
         });
     }
     odbBuyCart(req, res) {

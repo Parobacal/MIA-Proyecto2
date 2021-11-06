@@ -13,12 +13,76 @@ class ProductController {
         res.json({text: 'Product created'});
         console.log("Product created");
     }
+
+    public async odbAddComment(req: Request, res:Response){  
+        const { fk_idProducto, fk_correo, descripcion, fecha} = req.body;
+        let query = `INSERT INTO comentario (fk_idProducto,fk_correo,descripcion,fecha)
+                     VALUES ('${fk_idProducto}','${fk_correo}','${descripcion}',to_date('${fecha}','YYYY-MM-DD'))`;           
+        await database.simpleExecute(query);   
+        res.json({text: 'Comment created'});
+        console.log("Comment created");
+    }
+
+    public async odbGetComments(req: Request, res: Response){
+        const{id} = req.params;
+        let query = `SELECT * FROM comentario WHERE fk_idProducto = ${id}`;
+        const result = await database.simpleExecute(query);
+        res.send(result.rows);
+        console.log("Comments sent");
+    }
+
+    public async odbAddDenunce(req: Request, res:Response){  
+        const { fk_idProducto, fk_correo, descripcion} = req.body;
+        let query = `INSERT INTO denuncia (fk_idProducto,fk_correo,descripcion)
+                     VALUES ('${fk_idProducto}','${fk_correo}','${descripcion}')`;           
+        await database.simpleExecute(query);   
+        res.json({text: 'Comment created'});
+        console.log("Comment created");
+    }
+
+    public async odbGetDenunce(req: Request, res: Response){
+        let query = `SELECT * FROM denuncia`;
+        const result = await database.simpleExecute(query);
+        res.send(result.rows);
+        console.log("Denunces sent");
+    }
     
     public async odbProductList(req: Request, res: Response){
         let query = `SELECT * FROM producto`;
         const result = await database.simpleExecute(query);
         res.send(result.rows);
         //res.json({text: "Product list sent"})
+        console.log("Product list sent");
+    }
+
+    public async odbMore(req: Request, res: Response){
+        let query = `SELECT * FROM producto ORDER BY precio DESC`;
+        const result = await database.simpleExecute(query);
+        res.send(result.rows);
+        //res.json({text: "Product list sent"})
+        console.log("Product list sent");
+    }
+
+    public async odbLess(req: Request, res: Response){
+        let query = `SELECT * FROM producto ORDER BY precio ASC`;
+        const result = await database.simpleExecute(query);
+        res.send(result.rows);
+        //res.json({text: "Product list sent"})
+        console.log("Product list sent");
+    }
+
+    public async odbOrderByCategory(req: Request, res: Response){
+        const{id} = req.params;
+        let query = `SELECT * FROM producto WHERE fk_idCategoria = ${id}`;
+        const result = await database.simpleExecute(query);
+        res.send(result.rows);
+        console.log("Product detail sent");
+    }
+
+    public async odbCategoryList(req: Request, res: Response){
+        let query = `SELECT * FROM categoria`;
+        const result = await database.simpleExecute(query);
+        res.send(result.rows);
         console.log("Product list sent");
     }
 
@@ -46,6 +110,28 @@ class ProductController {
         const result = await database.simpleExecute(query);
         res.send(result.rows);
         console.log("Cart CLEAR");
+    }
+
+    public async odbDeleteProduct(req: Request, res: Response){
+        const{id} = req.params;
+        let query1 = `DELETE comentario WHERE fk_idProducto = '${id}'`;
+        let query2 = `DELETE denuncia WHERE fk_idProducto = '${id}'`;
+        let query4 = `DELETE carrito WHERE fk_idProducto = '${id}'`;
+        let query3 = `DELETE producto WHERE idProducto = '${id}'`;
+        await database.simpleExecute(query2);
+        await database.simpleExecute(query1);
+        await database.simpleExecute(query4);
+        await database.simpleExecute(query3);
+        res.json({text:"PRODUCT CLEAR"});
+        console.log("PRODUCT CLEAR");
+    }
+
+    public async odbDeleteDenunce(req: Request, res: Response){
+        const{id} = req.params;
+        let query = `DELETE denuncia WHERE fk_idProducto = '${id}'`;
+        await database.simpleExecute(query);
+        res.json({text:"DENUNCE CLEAR"});
+        console.log("DENUNCE CLEAR");
     }
 
     public async odbBuyCart(req: Request, res: Response){

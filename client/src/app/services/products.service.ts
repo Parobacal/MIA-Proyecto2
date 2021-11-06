@@ -2,6 +2,8 @@ import { Injectable, ɵConsole } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../models/product';
 import { Cart } from '../models/cart';
+import { Comment } from '../models/comments';
+import { Denunce } from '../models/denunce';
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +66,56 @@ export class ProductsService {
 
   buy(id: string){
     return this.http.get(`${this.API_URL}/cart-buy/${id}`);
+  }
+
+  loadCategorys(){
+    return this.http.get(`${this.API_URL}/get-categorys`);
+  }
+
+  orderByCategory(idCategory: string){
+    return this.http.get(`${this.API_URL}/order-category/${idCategory}`);
+  }
+
+
+  less(){
+    return this.http.get(`${this.API_URL}/get-categorys-less`);
+  }
+
+  more(){
+    return this.http.get(`${this.API_URL}/get-categorys-more`);
+  }
+
+  newComment(cm: Comment){
+    const fd = new FormData();
+    fd.append('fk_idProducto', cm.fk_idProduct.toString());
+    fd.append('fk_correo', cm.fk_mail);
+    fd.append('descripcion', cm.description.toString());
+    fd.append('fecha', cm.date);
+    return this.http.post(`${this.API_URL}/add-comment`, fd);
+  }
+
+  getComments(id: string){
+    return this.http.get(`${this.API_URL}/get-comment/${id}`);
+  }
+
+  newDenunce(dn: Denunce){
+    const fd = new FormData();
+    fd.append('fk_idProducto', dn.fk_idProduct.toString());
+    fd.append('fk_correo', dn.fk_mail);
+    fd.append('descripcion', dn.description);
+    return this.http.post(`${this.API_URL}/add-denunce`, fd);
+  }
+
+  getDenunce(){
+    return this.http.get(`${this.API_URL}/get-denunce`);
+  }
+
+  aceptDenunce(id: string){
+    return this.http.delete(`${this.API_URL}/delete-product/${id}`);
+  }
+
+  deleteDenunce(id: string){
+    return this.http.delete(`${this.API_URL}/delete-denunce/${id}`);
   }
 
 }

@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
       this.userService.updateUser(this.newData).subscribe(
         res => {
           console.log(res);
+          location.reload();
         }
       );
     }else{
@@ -45,6 +46,7 @@ export class ProfileComponent implements OnInit {
       this.userService.updateUser(this.newData).subscribe(
         res => {
             console.log(res);
+            location.reload();
         }
       );
     }

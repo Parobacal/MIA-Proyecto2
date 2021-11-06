@@ -1,3 +1,5 @@
+<h1>REPORTES</h1>
+
 <label>Top 10 de productos que más “me gusta” han tenido</label>
 <hr>
 <table class="table table-dark">
@@ -93,6 +95,27 @@
             <th scope="row">{{t.PRODUCTO}}</th> 
             <td>{{t.CLIENTE}}</td>
             <td>{{t.VENTAS}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <label>Top 10 de clientes que mas denuncias han hecho</label>
+    <hr>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">CORREO</th>
+            <th scope="col">FECHA DE NACIMIENTO</th>
+            <th scope="col">TOTAL DE DENUNCIAS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-dark" *ngFor="let d of denunces">
+            <th scope="row">{{d.NOMBRE}}</th> 
+            <td>{{d.CORREO}}</td>
+            <td>{{d.FECHA_NACIMIENTO}}</td>
+            <td>{{d.TOTAL}}</td>
           </tr>
         </tbody>
       </table>

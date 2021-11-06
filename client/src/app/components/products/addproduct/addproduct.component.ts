@@ -16,6 +16,7 @@ interface HtmlInputEvent extends Event{
 })
 export class AddproductComponent implements OnInit {
 
+  categorys : any = [];
 
   product: Product = {
     fk_idCategory: 1,
@@ -35,6 +36,7 @@ export class AddproductComponent implements OnInit {
   constructor(private productsService: ProductsService, private userService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loadCategorys();
   }
 
   addProduct(){
@@ -57,6 +59,17 @@ export class AddproductComponent implements OnInit {
       reader.onload = e => this.photoSelected = reader.result;
       reader.readAsDataURL(this.file);
     }
+  }
+
+  loadCategorys(){
+    this.productsService.loadCategorys()
+    .subscribe(
+      res => {
+        this.categorys = res;
+        console.log(res);
+      },
+      err => console.error(err)
+    )
   }
 
 }

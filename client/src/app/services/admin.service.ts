@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,16 @@ export class AdminService {
 
   getReport5(){
     return this.http.get(`${this.API_URL}/report5`);
+  }
+
+  getReport6(){
+    return this.http.get(`${this.API_URL}/report6`);
+  }
+
+  newCategory(category: Category){
+    const fd = new FormData();
+    fd.append('nombre', category.name);
+    return this.http.post(`${this.API_URL}/new-category`, fd);
   }
 
 }

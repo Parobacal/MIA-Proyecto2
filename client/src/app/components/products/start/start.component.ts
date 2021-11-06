@@ -11,7 +11,11 @@ import {ProductsService} from '../../../services/products.service';
 })
 export class StartComponent implements OnInit {
 
+  bycategory: boolean = false;
+
   products: any = [];
+
+  categorys: any = [];
 
   cart: Cart = {
     seller: '',
@@ -25,13 +29,8 @@ export class StartComponent implements OnInit {
   constructor(private productsServices: ProductsService, private userService: AuthService) { }
 
   ngOnInit(): void {
-
-    this.productsServices.getProducts().subscribe(
-      res => {
-        this.products = res;
-      },
-      err => console.log(err)
-    );
+      this.getProducts();
+      this.getCategorys();
   }
 
   addToCart(idProduct: number, price: number, name: string, seller: string){
@@ -44,6 +43,53 @@ export class StartComponent implements OnInit {
       res => {
         this.products = res;
         console.log(res);
+      },
+      err => console.log(err)
+    );
+  }
+
+  orderByCategory(idCategory: string){
+    this.productsServices.orderByCategory(idCategory).subscribe(
+      res => {
+        this.products = res;
+      },
+      err => console.log(err)
+    );
+  }
+
+  getCategorys(){
+    this.productsServices.loadCategorys()
+    .subscribe(
+      res => {
+        this.categorys = res;
+        console.log(res);
+      },
+      err => console.error(err)
+    )
+  }
+
+  getProducts(){
+    this.productsServices.getProducts().subscribe(
+      res => {
+        this.products = res;
+      },
+      err => console.log(err)
+    );
+  }
+
+  less(){
+    this.productsServices.less().subscribe(
+      res => {
+        this.products = res;
+      },
+      err => console.log(err)
+    );
+  }
+
+  more(){
+    this.productsServices.more().subscribe(
+      res => {
+        this.products = res;
       },
       err => console.log(err)
     );

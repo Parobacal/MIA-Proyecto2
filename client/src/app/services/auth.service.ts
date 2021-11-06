@@ -33,7 +33,6 @@ export class AuthService {
     return this.http.post(`${this.API_URL}/login`,user)
     .pipe(tap(
       (res: JWT) => {
-        console.log(res.user);
           this.saveToken(res.accessToken);
           this.saveUser(res.mail);
       },
@@ -75,6 +74,13 @@ export class AuthService {
       this.token = localStorage.getItem("ACCESS_TOKEN")
     }
     return this.token;
+  }
+
+  public logout(){
+    this.token = null;
+    this.user = null;
+    localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('CURRENT_USER');
   }
 
 }

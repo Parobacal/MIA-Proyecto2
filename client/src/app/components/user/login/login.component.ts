@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
         if(this.response.user != 'admin'){
           this.router.navigate(['/user/profile']);
           this.location.replaceState("/user/profile");
-          //location.reload();
+          location.reload();
         }else{
           //console.log("llegue");
           this.router.navigate(['/admin/report']);
           this.location.replaceState("/admin/report");
-          //location.reload();
+          location.reload();
         }
       },
       err => {

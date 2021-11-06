@@ -11,6 +11,9 @@ import {ReportComponent} from './components/admin/report/report.component';
 import {DenunceComponent} from './components/admin/denunce/denunce.component';
 import {CategoryComponent} from './components/admin/category/category.component';
 import {ShoppingComponent} from './components/products/shopping/shopping.component';
+import {CommentsComponent} from './components/products/comments/comments.component';
+import {DenunceformComponent} from './components/products/denunceform/denunceform.component';
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,6 +26,8 @@ const routes: Routes = [
   {path: 'admin/category', component: CategoryComponent},
   {path: 'admin/denunce', component: DenunceComponent},
   {path: 'products/shopping', component: ShoppingComponent},
+  {path: 'products/comments/:id', component: CommentsComponent},
+  {path: 'products/denunceform/:id', component: DenunceformComponent},
   {path: 'user/profile', component: ProfileComponent}
 ];
 

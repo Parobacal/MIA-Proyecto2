@@ -1,5 +1,7 @@
 import {Router} from 'express';
 import {adminController} from '../controllers/adminController';
+import multer from '../libs/multer';
+
 
 class AdminRoute{ 
 
@@ -15,6 +17,8 @@ class AdminRoute{
         this.router.get('/report3', adminController.odbReport3);
         this.router.get('/report4', adminController.odbReport4);
         this.router.get('/report5', adminController.odbReport5);
+        this.router.get('/report6', adminController.odbReport6);
+        this.router.post('/new-category', multer.single('image'), adminController.odbAddCategory);
     }
 }
 

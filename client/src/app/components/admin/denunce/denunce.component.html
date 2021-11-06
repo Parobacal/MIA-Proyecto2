@@ -1,1 +1,24 @@
-<p>denunce works!</p>
+<h1></h1>
+
+<h1>DENUNCIAS</h1>
+
+<div class="card" *ngFor="let d of denunces">
+    <div class="card-header">
+      {{d.FK_CORREO}}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{d.DESCRIPCION}}</p>
+        <footer class="blockquote-footer">PRODUCTO<cite title="Source Title">{{d.FK_IDPRODUCTO}}</cite></footer>
+      </blockquote>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-info" (click)="acept(d.FK_IDPRODUCTO)">
+            <i class="fas fa-thumbs-up"> ACEPTAR </i>
+          </button>
+        <button class="btn btn-danger" (click)="delete(d.FK_IDPRODUCTO)">
+            <i class="fas fa-trash"> RECHAZAR </i>
+        </button>
+      </div>
+  </div>
+  

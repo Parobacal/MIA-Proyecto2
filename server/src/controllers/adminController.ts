@@ -37,7 +37,22 @@ class AdminController {
         res.send(result.rows);
         console.log("Report5 sent");
     }
+
+    public async odbReport6(req: Request, res: Response){
+        let query = `SELECT p.nombre, p.correo, p.fecha_nacimiento, COUNT(*) AS TOTAL FROM usuario p, denuncia d WHERE p.correo = d.fk_correo GROUP BY p.nombre, p.correo, p.fecha_nacimiento ORDER BY TOTAL DESC FETCH NEXT 10 ROWS ONLY`;
+        const result = await database.simpleExecute(query);
+        res.send(result.rows);
+        console.log("Report6 sent");
+    }
     
+    public async odbAddCategory(req: Request, res: Response){
+        const {nombre} = req.body;
+        let query = `INSERT INTO categoria (nombre) VALUES ('${nombre}')`;
+        await database.simpleExecute(query);
+        res.json({text:"Category " + nombre + " created"});
+        console.log("Category " + nombre + " created");
+    }
+
 }
 
 export const adminController = new AdminController();

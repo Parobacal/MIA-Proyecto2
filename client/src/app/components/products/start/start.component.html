@@ -6,10 +6,7 @@
           CATEGORIA
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" *ngFor="let c of categorys" (click)="orderByCategory(c.IDCATEGORIA)">{{c.NOMBRE}}</a>
         </div>
       </li>
       
@@ -18,8 +15,8 @@
           PRECIO
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">De menor a mayor</a>
-          <a class="dropdown-item" href="#">De mayor a menor</a>
+          <a class="dropdown-item" (click)="less()">De menor a mayor</a>
+          <a class="dropdown-item" (click)="more()">De mayor a menor</a>
         </div>
       </li>
 

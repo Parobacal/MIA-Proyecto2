@@ -61,7 +61,7 @@ class UserController {
                 const dataUser = {
                     user: result.rows[0].NOMBRE,
                     mail: result.rows[0].CORREO,
-                    accesToken: newaccessToken
+                    accessToken: newaccessToken
                 }
                 if(result.rows[0].CLAVE === req.body.password){
                     res.send(dataUser);

@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ 
     <a class="navbar-brand" routerLink="">GT Sales</a>
+    <a class="navbar-brand text-dark" routerLink="/">{{data}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,22 +11,35 @@
           <a class="nav-link" routerLink="" routerLinkActive = "active">Inicio <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/user/login" routerLinkActive = "active">Ingresar</a>
+          <a class="nav-link" routerLink="/user/login" *ngIf="!isLogged" routerLinkActive = "active">Ingresar</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/user/register" routerLinkActive = "active">Registrarse</a>
+          <a class="nav-link" routerLink="/user/register" *ngIf="!isLogged" routerLinkActive = "active">Registrarse</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/products/start" routerLinkActive = "active">Mercado</a>
+          <a class="nav-link" routerLink="/products/start" *ngIf="isLogged && isUser" routerLinkActive = "active">Mercado</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/products/addproduct" routerLinkActive = "active">Agregar producto</a>
+          <a class="nav-link" routerLink="/products/addproduct" *ngIf="isLogged && isUser" routerLinkActive = "active">Agregar producto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/user/profile" routerLinkActive = "active">Perfil</a>
+          <a class="nav-link" routerLink="/user/profile" *ngIf="isLogged && isUser" routerLinkActive = "active">Perfil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/products/shopping" routerLinkActive = "active">CARRITO</a>
+          <a class="nav-link" routerLink="/products/shopping" *ngIf="isLogged && isUser" routerLinkActive = "active">CARRITO</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/report" *ngIf="isLogged && isAdmin" routerLinkActive = "active">REPORTES</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/category" *ngIf="isLogged && isAdmin" routerLinkActive = "active">CATEGORIAS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/denunce" *ngIf="isLogged && isAdmin" routerLinkActive = "active">DENUNCIAS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" (click)="logout()" *ngIf="isLogged"><i class="fas fa-sign-out-alt"></i>SALIR</a>
         </li>
       </ul>
     </div>
